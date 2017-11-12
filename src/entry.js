@@ -83,7 +83,7 @@ const meteorExplosionSound = new Howl({
   src: "meteor_explosion.mp3",
   volume: 0.1
 });
-const music = new Howl({ src: "meteor-storm-theme.mp3", volume: 3 });
+const music = new Howl({ src: "meteor_storm_theme.mp3", volume: 3 });
 
 music.play();
 
