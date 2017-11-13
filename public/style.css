@@ -18,6 +18,39 @@ canvas {
   outline: none;
 }
 
+p {
+  margin: 0;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 30%;
+  position: fixed;
+  text-align: center;
+  font-size: 96px;
+  transition: opacity 1s;
+}
+
+.play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  height: 60px;
+  padding: 10px;
+  background: #000;
+  border: 1px solid #fff;
+  color: #4ef7da;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.hide {
+  opacity: 0;
+}
+
 .score,
 .lives,
 .game-over {
@@ -41,10 +74,14 @@ canvas {
 }
 
 .game-over {
-  font-size: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 30%;
   position: fixed;
-  top: 40%;
-  width: 100%;
+  text-align: center;
+  transition: opacity 1s;
+  font-size: 36px;
   text-align: center;
   z-index: 1;
 }
