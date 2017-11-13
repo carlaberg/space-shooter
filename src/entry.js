@@ -473,6 +473,8 @@ loader.load(
             collisionFilterMask: METEORS
           });
 
+          shotBody.name = "Shot";
+
           if (i === 0) {
             shotBody.position.x = shipBody.position.x - 2.5;
           } else {
@@ -503,15 +505,25 @@ loader.load(
 
           // CREATE THREE SHOT
 
-          var threeShotGeometry = new THREE.CylinderGeometry(1, 1, 25, 32);
+          // var threeShotGeometry = new THREE.CylinderGeometry(1, 1, 25, 32);
+          //
+          // threeShotMesh = new THREE.Mesh(
+          //   threeShotGeometry,
+          //   new THREE.MeshLambertMaterial({ color: 0xf6ef71 })
+          // );
+          // threeShotMesh.position.copy(shotBody.position);
+          // threeShotGroup.add(threeShotMesh);
 
-          threeShotMesh = new THREE.Mesh(
-            threeShotGeometry,
-            new THREE.MeshLambertMaterial({ color: 0xf6ef71 })
-          );
-          threeShotMesh.position.copy(shotBody.position);
-          threeShotGroup.add(threeShotMesh);
+          // LASER BEAM
+          var laserBeam = new THREEx.LaserBeam();
+          laserBeam.object3d.scale.set(40, 40, 40);
+          // laserBeam.object3d.position.set(0, 50, 0);
+          laserBeam.object3d.rotation.set(0, 1.57, 1.58);
+          laserBeam.object3d.position.y = shotBody.position.y;
+          laserBeam.object3d.position.x = shotBody.position.x;
+          threeShotGroup.add(laserBeam.object3d);
         }
+
         scene.add(threeShotGroup);
         threeShots.push(threeShotGroup);
         cannonShots.push(cannonShotGroup);
@@ -524,6 +536,7 @@ loader.load(
         }
       }
 
+      // PREVENT MULTIPLE SHOTS ON KEYDOWN
       window.addEventListener("keyup", e => {
         fired = false;
       });
@@ -576,23 +589,31 @@ loader.load(
       if (shotBody) {
         threeShots.forEach((shot, index) => {
           var shotNum = index;
-          shot.position.y = cannonShots[index].children[0].position.y;
-          if (shot.position.y > 250) {
-            shot.children[0].material.transparent = true;
-            shot.children[1].material.transparent = true;
-            shot.children[0].material.opacity -= 0.05;
-            shot.children[1].material.opacity -= 0.05;
+          shot.position.y = cannonShots[index].children[0].position.y - 70;
+          if (shot.position.y > 300) {
+            // shot.children[0].material.transparent = true;
+            // shot.children[1].material.transparent = true;
+            // shot.children[0].material.opacity -= 0.05;
+            // shot.children[1].material.opacity -= 0.05;
 
-            if (shot.children[1].material.opacity < 0.1) {
-              scene.remove(shot);
+            scene.remove(shot);
 
-              console.log(cannonShots);
-              world.removeBody(cannonShots[index].children[0]);
-              world.removeBody(cannonShots[index].children[1]);
+            world.removeBody(cannonShots[index].children[0]);
+            world.removeBody(cannonShots[index].children[1]);
 
-              threeShots.splice(index, 1);
-              cannonShots.splice(index, 1);
-            }
+            threeShots.splice(index, 1);
+            cannonShots.splice(index, 1);
+
+            // if (shot.children[1].material.opacity < 0.1) {
+            //   scene.remove(shot);
+            //
+            //   console.log(cannonShots);
+            //   world.removeBody(cannonShots[index].children[0]);
+            //   world.removeBody(cannonShots[index].children[1]);
+            //
+            //   threeShots.splice(index, 1);
+            //   cannonShots.splice(index, 1);
+            // }
           }
         });
       }

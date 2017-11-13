@@ -6,7 +6,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Bungee Hairline';
+  font-family: "Bungee Hairline";
   margin: 0;
   padding: 0;
   background-color: black;
@@ -21,8 +21,8 @@ canvas {
 .score,
 .lives,
 .game-over {
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00ff,
-    0 0 35px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 75px #ff00ff;
+  /*text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff,
+    0 0 35px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 75px #fff;*/
 }
 
 .score,
